@@ -36,7 +36,7 @@ A React Three Fiber (R3F) project bootstrapped with Vite that renders a procedur
 1. Clone this repository:
 
 ```bash
-git clone https://github.com/yourusername/threejs-terrain-skybox.git
+git clone https://github.com/paramarcosel/terrain-generator.git
 cd threejs-terrain-skybox
 ```
 2. Install Dependencies:
