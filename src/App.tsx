@@ -352,9 +352,9 @@ export default function App() {
             {/* World */}
             <Skybox />
             <TerrainChunkManager 
-                lowMapPath='https://github.com/ParaMarcosEl/terrain-generator/blob/main/public/planet_texture01.png' 
-                midMapPath='https://github.com/ParaMarcosEl/terrain-generator/blob/main/public/planet_texture02.png'
-                highMapPath='https://github.com/ParaMarcosEl/terrain-generator/blob/main/public/planet_texture03.png'
+                lowMapPath='/planet_texture01.png' 
+                midMapPath='/planet_texture02.png'
+                highMapPath='/planet_texture03.png'
                 chunkSize={128} 
                 segments={64}
                 frequency={0.001}
