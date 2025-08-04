@@ -23,6 +23,7 @@ const TerrainChunkManager = ({
   lacunarity = 2,
   persistence = .5,
   exponentiation = 3,
+  onMaterialLoaded
 }: { 
   chunkSize?: number,
   yOffset?: number,
@@ -37,9 +38,10 @@ const TerrainChunkManager = ({
   lacunarity?: number,
   persistence?: number,
   exponentiation?: number,
+  onMaterialLoaded: (loaded: boolean) => void;
 }) => {
   const { camera } = useThree();
-  const { chunks, enqueueChunks } = useTerrainChunkBuilder();
+  const { chunks, enqueueChunks } = useTerrainChunkBuilder({ onMaterialLoaded });
   const lastChunkCoords = useRef<THREE.Vector2 | null>(null);
 
   

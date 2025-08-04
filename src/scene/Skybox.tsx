@@ -19,7 +19,6 @@ export function Skybox() {
   }, []);
 
   useEffect(() => {
-  console.log('Skybox texture loaded:', skyboxTexture);
     scene.background = skyboxTexture;
   }, [scene, skyboxTexture]);
 

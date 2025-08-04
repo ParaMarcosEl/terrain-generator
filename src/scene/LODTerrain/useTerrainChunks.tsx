@@ -8,12 +8,12 @@ import type { ITerrainChunkProps } from './Terrain/Terrain'; // Adjust the path 
 // Pool to reuse terrain chunks (simple object pool pattern)
 const terrainPool: THREE.Mesh[] = [];
 
-export function useTerrainChunkBuilder() {
+export function useTerrainChunkBuilder({ onMaterialLoaded }: { onMaterialLoaded: (loaded: boolean) => void }) {
   const [doneBuilding, setDoneBuilding] = useState(false);
+  const [renderedChunks, setRenderedChunks] = useState<ReactElement[]>([]);
   
   const buildQueue = useRef<ITerrainChunkProps[]>([]);
   const activeChunks = useRef<Map<string, ReactElement>>(new Map());
-  const [renderedChunks, setRenderedChunks] = useState<ReactElement[]>([]);
 
   const enqueueChunks = useCallback((chunks: ITerrainChunkProps[]) => {
     buildQueue.current.push(...chunks);
@@ -22,13 +22,7 @@ export function useTerrainChunkBuilder() {
   const createKey = (pos: THREE.Vector3, size: number) =>
   `${Math.floor(pos.x / size)}_${Math.floor(pos.z / size)}_${size}`;
 
-  // Generator-based terrain creation function
   function* buildTerrainChunk(props: ITerrainChunkProps) {
-    // Simulate work across multiple frames
-    yield; // Initial yield
-
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const mesh = terrainPool.pop() || new THREE.Mesh();
     yield;
 
     const { position, size } = props;
@@ -54,16 +48,16 @@ export function useTerrainChunkBuilder() {
             ).rotateX(-Math.PI / 2); // if needed
           }
         }}
+        onMaterialLoaded={onMaterialLoaded}
         {...props}
       />
     );
 
-    yield; // Simulate more processing
+    yield; 
 
     return chunkElement;
   }
 
-  // Builder coroutine
   const currentBuilder = useRef<Generator<unknown, ReactElement | undefined> | null>(null);
   const currentChunkProps = useRef<ITerrainChunkProps | null>(null);
 
@@ -85,7 +79,6 @@ export function useTerrainChunkBuilder() {
         currentBuilder.current = null;
         currentChunkProps.current = null;
 
-        // Once all chunks are done, update visible terrain
         if (
           buildQueue.current.length === 0 &&
           currentBuilder.current === null

@@ -1,5 +1,5 @@
 import { extend, type ThreeElement } from '@react-three/fiber';
-import { LitTerrainMaterial } from './LODTerrain/Terrain/LitTerrainMaterial';
+import { LitTerrainMaterial } from './scene/LODTerrain/Terrain/LitTerrainMaterial';
 import * as THREE from 'three';
 
 extend({ LitTerrainMaterial });

@@ -21,7 +21,7 @@ export interface ITerrainChunkProps {
   midMapPath?: string;
   highMapPath?: string;
   lowMapPath?: string;
-  setShaderCompiled?: (compiled: boolean) => void;
+  onMaterialLoaded?: (compiled: boolean) => void;
 }
 
 const Terrain = forwardRef<THREE.Mesh, ITerrainChunkProps>(function Terrain(
@@ -40,7 +40,7 @@ const Terrain = forwardRef<THREE.Mesh, ITerrainChunkProps>(function Terrain(
     midMapPath = '/planet_texture01.png',
     highMapPath = '/planet_texture02.png',
     lowMapPath = '/planet_texture03.png',
-    setShaderCompiled,
+    onMaterialLoaded,
   },
   ref
 ) {
@@ -138,7 +138,7 @@ const Terrain = forwardRef<THREE.Mesh, ITerrainChunkProps>(function Terrain(
         ref={materialRef}
         attach="material"
         side={THREE.DoubleSide}
-        onShaderCompiled={() => setShaderCompiled && setShaderCompiled(true)}
+        onShaderCompiled={() => onMaterialLoaded && onMaterialLoaded(true)}
       />
     </mesh>
   );
