@@ -5,9 +5,9 @@ import { QuadtreeNode } from './quadTree';
 import * as THREE from 'three';
 
 const Y_OFFSET = -150; // Default Y offset for terrain chunks
-const CHUNK_SIZE = 128;
-const MAX_DEPTH = 8;
-const SPLIT_THRESHOLD = 3;
+const CHUNK_SIZE = 512;
+const MAX_DEPTH = 4;
+const SPLIT_THRESHOLD = 1.5;
 
 const TerrainChunkManager = ({ 
   chunkSize = CHUNK_SIZE,
@@ -16,7 +16,7 @@ const TerrainChunkManager = ({
   midMapPath, 
   highMapPath, 
   segments = 128,
-  maxHeight = 400,
+  maxHeight = 512,
   frequency = .0006,
   amplitude = 5,
   octaves = 3,
