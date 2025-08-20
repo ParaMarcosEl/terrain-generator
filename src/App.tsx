@@ -355,12 +355,12 @@ export default function App() {
                 lowMapPath='/planet_texture01.png' 
                 midMapPath='/planet_texture02.png'
                 highMapPath='/planet_texture03.png'
-                chunkSize={128} 
-                segments={64}
+                chunkSize={512} 
+                segments={128}
                 frequency={0.001}
                 amplitude={1}
                 exponentiation={3}
-                maxHeight={800}
+                maxHeight={1024}
                 octaves={8}
                 yOffset={-200}
                 onMaterialLoaded={() => setMaterialLoaded(true)}
